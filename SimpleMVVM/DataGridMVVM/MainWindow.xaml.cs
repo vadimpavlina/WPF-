@@ -50,32 +50,52 @@ namespace DataGridMVVM
 
             dgSimple.ItemsSource = users;
         }
-
+   
         private void BtnAddUser_Click(object sender, RoutedEventArgs e)
         {
-            users.Add(new User()
+            if (txtID.Text != "" && txtName.Text != "" && ImgUrl.Text != "")
             {
-                Id = 3333,
-                Name = "New user",
-                Birthday = new DateTime(1991, 9, 2),
-                ImageUrl = "https://sharerice.com/images/thumb/4/40/10931180_947171611960525_5370449655645132591_n.jpg/300px-10931180_947171611960525_5370449655645132591_n.jpg"
-            });
+                users.Add(new User()
+                {
+                    Id = Convert.ToInt32(txtID.Text),
+                    Name = txtName.Text,
+                    Birthday = new DateTime(1991, 9, 2),
+                    ImageUrl = ImgUrl.Text
+                });
+                txtID.Text = null;
+                txtName.Text = null;
+                ImgUrl.Text = null;
+            }
+          
         }
-
+        
         private void BtnChangeUser_Click(object sender, RoutedEventArgs e)
         {
-            if (dgSimple.SelectedItem != null)
-            {
-                var userView = (dgSimple.SelectedItem as User);
-                userView.Name = "Катюха";
-        
-            }
+            var userView = (dgSimple.SelectedItem as User);
+            txtName.Text = userView.Name;
+            txtID.Text = userView.Id.ToString();
+            ImgUrl.Text = userView.ImageUrl;
+            SaveUser.Visibility = Visibility.Visible;
         }
-
+       
         private void BtnDeleteUser_Click(object sender, RoutedEventArgs e)
         {
             if (dgSimple.SelectedItem != null)
                 users.Remove(dgSimple.SelectedItem as User);
+        }
+
+        private void DgSimple_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void SaveUser_Click(object sender, RoutedEventArgs e)
+        {
+            var userView = (dgSimple.SelectedItem as User);
+            userView.Name = txtName.Text;
+            userView.Id = Convert.ToInt32(txtID.Text);
+            userView.ImageUrl = ImgUrl.Text;
+            SaveUser.Visibility = Visibility.Hidden;
         }
     }
     public class User : INotifyPropertyChanged

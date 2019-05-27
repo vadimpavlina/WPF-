@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <DockPanel>
-        <StackPanel DockPanel.Dock="Right">
-            <Button Name="btnAddUser" Click="BtnAddUser_Click">Add user</Button>
-            <Button Name="btnChangeUser" Margin="0,5" Click="BtnChangeUser_Click">Change user</Button>
-            <Button Name="btnDeleteUser" Click="BtnDeleteUser_Click" >Delete user</Button>
+        <StackPanel DockPanel.Dock="Right" Width="107" Margin="0,26,0,0">
+            <Button x:Name="btnAddUser" Click="BtnAddUser_Click" Height="23" Content="Add user"/>
+            <Button x:Name="btnChangeUser" Margin="0,5" Click="BtnChangeUser_Click" Content="Change user"/>
+            <Button x:Name="btnDeleteUser" Click="BtnDeleteUser_Click" Content="Delete user" />
         </StackPanel>
-        <DataGrid Name="dgSimple" AutoGenerateColumns="False" Width="795">
+        <DataGrid Name="dgSimple" AutoGenerateColumns="False" Width="548" SelectionChanged="DgSimple_SelectionChanged" Margin="0,26,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Назва" Binding="{Binding Name}" />
                 <DataGridTemplateColumn Header="Дата народження">
@@ -50,5 +50,16 @@
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>
+        <StackPanel DockPanel.Dock="Right" Width="134">
+            <Label Content="Name" Margin="46,0,43,0"/>
+            <TextBox Height="23" TextWrapping="Wrap" Text=" " Name="txtName" Background="AliceBlue"/>
+            <Label Content="ID" Margin="56,0,43,0"/>
+            <TextBox Height="23" TextWrapping="Wrap" Text=" " x:Name="txtID" Background="AliceBlue"/>
+            <Label Content="Image Url" Margin="37,0,24,0"/>
+            <TextBox Height="23" TextWrapping="Wrap" Text=" " x:Name="ImgUrl" Background="AliceBlue"/>
+            <Label Content="&#xD;&#xA;" Margin="10,0"/>
+            <Button x:Name="SaveUser" Content="Save" Height="45" Click="SaveUser_Click" Visibility="Hidden" />
+
+        </StackPanel>
     </DockPanel>
 </Window>
