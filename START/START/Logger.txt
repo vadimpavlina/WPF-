@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPerson xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Person>
+    <Name>Administrator</Name>
+    <Surname>System</Surname>
+    <Age>16</Age>
+    <Login>admin</Login>
+    <Paswd>12345678</Paswd>
+    <PathImg />
+  </Person>
+  <Person>
+    <Name>Vika</Name>
+    <Surname>Pavlina</Surname>
+    <Age>20</Age>
+    <Login>x</Login>
+    <Paswd>x</Paswd>
+    <PathImg>C:\Users\Vadim\Desktop\favicon_32-vflOogEID.png</PathImg>
+  </Person>
+  <Person>
+    <Name>Tanya</Name>
+    <Surname>ShotoTam</Surname>
+    <Age>21</Age>
+    <Login>tanya</Login>
+    <Paswd>123</Paswd>
+    <PathImg>C:\Users\Vadim\Desktop\images.png</PathImg>
+  </Person>
+  <Person>
+    <Name>Vadim</Name>
+    <Surname>Pavlina</Surname>
+    <Age>83</Age>
+    <Login>pavl</Login>
+    <Paswd>123321</Paswd>
+    <PathImg>C:\Users\Vadim\Desktop\favicon_32-vflOogEID.png</PathImg>
+  </Person>
+  <Person>
+    <Name>Roma</Name>
+    <Surname>KaktoTam</Surname>
+    <Age>5</Age>
+    <Login>roman</Login>
+    <Paswd>123456789</Paswd>
+    <PathImg>C:\Users\Vadim\Desktop\favicon_32-vflOogEID.png</PathImg>
+  </Person>
+</ArrayOfPerson>
