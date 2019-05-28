@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bogus.Properties
+namespace DataGridMVVM.Properties
 {
 
 
