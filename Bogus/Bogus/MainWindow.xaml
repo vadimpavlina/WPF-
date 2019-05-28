@@ -1,0 +1,69 @@
+﻿<Window x:Class="Bogus.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bogus"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Closing="Window_Closing" Loaded="Window_Loaded">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Right" Width="107" Margin="0,10,0,0">
+            <Button x:Name="btnAddUser" Click="BtnAddUser_Click" Height="24" Content="Add user"/>
+            <Button x:Name="btnChangeUser" Margin="0,5" Click="BtnChangeUser_Click" Content="Change user"/>
+            <Button x:Name="btnDeleteUser" Click="BtnDeleteUser_Click" Content="Delete user" Height="28" />
+            <Button x:Name="btnSearch" Content="Search user" Height="26" Click="BtnSearch_Click" />
+        </StackPanel>
+        <DataGrid Name="dgSimple" AutoGenerateColumns="False" Width="548" SelectionChanged="DgSimple_SelectionChanged" Margin="0,10,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ім'я" Binding="{Binding Name}" />
+                <DataGridTemplateColumn Header="Дата народження">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding Birthday}" BorderThickness="0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+               
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <DockPanel Background="GhostWhite">
+                        <Image DockPanel.Dock="Left" Source="{Binding ImageUrl}" Height="64" Margin="10" />
+                        <Grid Margin="0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="ID: " FontWeight="Bold" />
+                            <TextBlock Text="{Binding Id}" Grid.Column="1" />
+                            <TextBlock Text="Name: " FontWeight="Bold" Grid.Row="1" />
+                            <TextBlock Text="{Binding Name}" Grid.Column="1" Grid.Row="1" />
+                            <TextBlock Text="Birthday: " FontWeight="Bold" Grid.Row="2" />
+                            <TextBlock Text="{Binding Birthday, StringFormat=d}" Grid.Column="1" Grid.Row="2" />
+
+                        </Grid>
+                    </DockPanel>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+        <StackPanel DockPanel.Dock="Right" Width="134" Margin="0,10,0,0">
+            <Label x:Name="lblName" Content="Name" Margin="46,0,43,0" Visibility="Hidden"/>
+            <TextBox Height="23" TextWrapping="Wrap" Text=" " Name="txtName" Background="AliceBlue" Visibility="Hidden"/>
+            <Label x:Name="lblId" Content="ID" Margin="56,0,43,0" Visibility="Hidden"/>
+            <TextBox Height="23" TextWrapping="Wrap" Text=" " x:Name="txtID" Background="AliceBlue" Visibility="Hidden"/>
+            <Label x:Name="lblImg" Content="Image Url" Margin="37,0,24,0" Visibility="Hidden"/>
+            <TextBox Height="23" TextWrapping="Wrap" Text=" " x:Name="ImgUrl" Background="AliceBlue" Visibility="Hidden"/>
+            <Label Content="&#xA;" Margin="22,0,24,0" Height="49"/>
+            <Button x:Name="SaveUser" Content="Save" Height="45" Click="SaveUser_Click" Visibility="Hidden" />
+            <DatePicker x:Name="datePick" Visibility="Hidden"/>
+            <Button Content="Confirm" Name="btnConfirm" Click="BtnConfirm_Click" Margin="10,0"/>
+
+        </StackPanel>
+    </DockPanel>
+</Window>
