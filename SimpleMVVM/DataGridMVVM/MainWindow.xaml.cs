@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace DataGridMVVM
 {
@@ -22,62 +24,56 @@ namespace DataGridMVVM
     /// </summary>
     public partial class MainWindow : Window
     {
+        bool check = true;
         ObservableCollection<User> users = new ObservableCollection<User>();
         public MainWindow()
         {
             InitializeComponent();
-            users.Add(new User()
-            {
-                Id = 1,
-                Name = "John Doe",
-                Birthday = new DateTime(1971, 7, 23),
-                ImageUrl = "http://www.hawthorngroup.com/wp-content/uploads/2019/03/john-1-300x300.jpg"
-            });
-            users.Add(new User()
-            {
-                Id = 2,
-                Name = "Jane Doe",
-                Birthday = new DateTime(1974, 1, 17),
-                ImageUrl = "https://i.vimeocdn.com/portrait/7224366_300x300"
-            });
-            users.Add(new User()
-            {
-                Id = 3,
-                Name = "Sammy Doe",
-                Birthday = new DateTime(1991, 9, 2),
-                ImageUrl = "https://sharerice.com/images/thumb/4/40/10931180_947171611960525_5370449655645132591_n.jpg/300px-10931180_947171611960525_5370449655645132591_n.jpg"
-            });
 
-            dgSimple.ItemsSource = users;
         }
-   
+
         private void BtnAddUser_Click(object sender, RoutedEventArgs e)
         {
-            if (txtID.Text != "" && txtName.Text != "" && ImgUrl.Text != "")
-            {
-                users.Add(new User()
-                {
-                    Id = Convert.ToInt32(txtID.Text),
-                    Name = txtName.Text,
-                    Birthday = new DateTime(1991, 9, 2),
-                    ImageUrl = ImgUrl.Text
-                });
-                txtID.Text = null;
-                txtName.Text = null;
-                ImgUrl.Text = null;
-            }
-          
+            lblId.Visibility = Visibility.Visible;
+            lblImg.Visibility = Visibility.Visible;
+            lblName.Visibility = Visibility.Visible;
+            //====================================
+            txtID.Visibility = Visibility.Visible;
+            txtName.Visibility = Visibility.Visible;
+            ImgUrl.Visibility = Visibility.Visible;
+            //=======================================
+            datePick.Visibility = Visibility.Visible;
+            //=====================================
+            SaveUser.Visibility = Visibility;
+            check = true;
         }
-        
+
         private void BtnChangeUser_Click(object sender, RoutedEventArgs e)
         {
+
+            lblId.Visibility = Visibility.Visible;
+            lblImg.Visibility = Visibility.Visible;
+            lblName.Visibility = Visibility.Visible;
+            //====================================
+            txtID.Visibility = Visibility.Visible;
+            txtName.Visibility = Visibility.Visible;
+            ImgUrl.Visibility = Visibility.Visible;
+            //=======================================
+            datePick.Visibility = Visibility.Visible;
+
+            //=========================================
+            btnAddUser.IsEnabled = false;
+            //==============================================
             var userView = (dgSimple.SelectedItem as User);
-            txtName.Text = userView.Name;
+            //=============================================
             txtID.Text = userView.Id.ToString();
+            txtName.Text = userView.Name;
             ImgUrl.Text = userView.ImageUrl;
+            datePick.SelectedDate = userView.Birthday;
             SaveUser.Visibility = Visibility.Visible;
+            check = false;
         }
-       
+
         private void BtnDeleteUser_Click(object sender, RoutedEventArgs e)
         {
             if (dgSimple.SelectedItem != null)
@@ -86,16 +82,73 @@ namespace DataGridMVVM
 
         private void DgSimple_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
         }
 
         private void SaveUser_Click(object sender, RoutedEventArgs e)
         {
-            var userView = (dgSimple.SelectedItem as User);
-            userView.Name = txtName.Text;
-            userView.Id = Convert.ToInt32(txtID.Text);
-            userView.ImageUrl = ImgUrl.Text;
+            if (check == false)
+            {
+                if (dgSimple.SelectedItem != null)
+                    users.Remove(dgSimple.SelectedItem as User);
+            }
+            //==================================
+            users.Add(new User()
+            {
+                Id = Convert.ToInt32(txtID.Text),
+                Name = txtName.Text,
+                Birthday = datePick.SelectedDate.Value.Date,
+                ImageUrl = ImgUrl.Text
+            });
+            //======================================
+            txtID.Text = null;
+            txtName.Text = null;
+            ImgUrl.Text = null;
+            datePick.SelectedDate = null;
+            //=================
             SaveUser.Visibility = Visibility.Hidden;
+            //======================================
+            btnAddUser.IsEnabled = true;
+            //======================================
+            lblId.Visibility = Visibility.Hidden;
+            lblImg.Visibility = Visibility.Hidden;
+            lblName.Visibility = Visibility.Hidden;
+            //====================================
+            txtID.Visibility = Visibility.Hidden;
+            txtName.Visibility = Visibility.Hidden;
+            ImgUrl.Visibility = Visibility.Hidden;
+            //=======================================
+            datePick.Visibility = Visibility.Hidden;
+            
+        }
+        //=======================================================================
+        public void SerializeAndSave(string path, ObservableCollection<User> data)
+        {
+            var serializer = new XmlSerializer(typeof(ObservableCollection<User>));
+            using (var writer = new StreamWriter(path))
+            {
+                serializer.Serialize(writer, data);
+            }
+        }
+        //=======================================================================
+        public ObservableCollection<User> ReadAndDeserialize(string path)
+        {
+            var serializer = new XmlSerializer(typeof(ObservableCollection<User>));
+            using (var reader = new StreamReader(@"C:\Users\Pavl_gm1b\Desktop\Work\WPF-\SimpleMVVM\DataGridMVVM\Person.txt"))
+            {
+                return (ObservableCollection<User>)serializer.Deserialize(reader);
+            }
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            SerializeAndSave(@"C:\Users\Pavl_gm1b\Desktop\Work\WPF-\SimpleMVVM\DataGridMVVM\Person.txt", users);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            users = ReadAndDeserialize(@"C:\Users\Pavl_gm1b\Desktop\Work\WPF-\SimpleMVVM\DataGridMVVM\Person.txt");
+            dgSimple.ItemsSource = users;
         }
     }
     public class User : INotifyPropertyChanged

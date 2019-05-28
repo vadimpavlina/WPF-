@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <User>
+    <Id>12</Id>
+    <Birthday>2016-05-03T00:00:00</Birthday>
+    <ImageUrl> https://images.unsplash.com/photo-1509070016581-915335454d19?ixlib=rb-1.2.1&amp;w=1000&amp;q=80</ImageUrl>
+    <Name> Лена</Name>
+  </User>
+  <User>
+    <Id>2</Id>
+    <Birthday>1974-01-17T00:00:00</Birthday>
+    <ImageUrl>http://standupforamerica.files.wordpress.com/2009/05/maple-leaf-cool.jpg</ImageUrl>
+    <Name>Jane Doe</Name>
+  </User>
+  <User>
+    <Id>4</Id>
+    <Birthday>1998-02-27T00:00:00</Birthday>
+    <ImageUrl> https://img.glavnoe.ua/Image2018/2018/04/13/0004.jpg</ImageUrl>
+    <Name> Таня</Name>
+  </User>
+  <User>
+    <Id>3</Id>
+    <Birthday>1991-09-02T00:00:00</Birthday>
+    <ImageUrl>https://icdn3.digitaltrends.com/image/photographer-ted-hesser-viral-eclipse-photo-of-the-century.jpg</ImageUrl>
+    <Name>Sammy Doe</Name>
+  </User>
+  <User>
+    <Id>9</Id>
+    <Birthday>2018-06-11T00:00:00</Birthday>
+    <ImageUrl>https://www.rencontres-arles.com/files/media_file_2106.jpg</ImageUrl>
+    <Name>Roman</Name>
+  </User>
+  <User>
+    <Id>7</Id>
+    <Birthday>1990-06-20T00:00:00</Birthday>
+    <ImageUrl>https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQolrrXW0fuowbX1vG5oMQAsIrEcUfApKVkSj8z7q1ThWK7LrV4</ImageUrl>
+    <Name>Дима</Name>
+  </User>
+  <User>
+    <Id>4</Id>
+    <Birthday>2019-05-08T00:00:00</Birthday>
+    <ImageUrl>http://www.hdfondos.eu/pictures/2013/0107/1/parrots-color-eyes-tropical-images-184885.jpg</ImageUrl>
+    <Name> Vadim</Name>
+  </User>
+</ArrayOfUser>
