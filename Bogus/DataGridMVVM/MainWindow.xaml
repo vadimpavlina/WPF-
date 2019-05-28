@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <DockPanel>
-        <StackPanel DockPanel.Dock="Right">
+        <StackPanel DockPanel.Dock="Right" Width="91">
             <Button Name="btnAddUser" Margin="0,5" Click="BtnAddUser_Click">Add user</Button>
             <Button Name="btnChangeUser" Margin="0,5" Click="BtnChangeUser_Click">Change user</Button>
             <Button Name="btnDeleteUser" Margin="0,5" Click="BtnDeleteUser_Click" >Delete user</Button>
@@ -15,17 +15,17 @@
         </StackPanel>
         <StackPanel DockPanel.Dock="Bottom">
             <WrapPanel x:Name="wpPaginationButtons">
-                
+
             </WrapPanel>
             <Label x:Name="statusBarLabelInfo" Content="Time work"/>
         </StackPanel>
-        
-        <DataGrid Name="dgSimple" AutoGenerateColumns="False" RenderTransformOrigin="0.5,0.5">
+
+        <DataGrid Name="dgSimple" AutoGenerateColumns="False" RenderTransformOrigin="0.5,0.5" Margin="0,4,0,0" Width="693">
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform AngleX="-0.292"/>
-                    <RotateTransform/>
+                    <RotateTransform Angle="0.018"/>
                     <TranslateTransform X="-1.069"/>
                 </TransformGroup>
             </DataGrid.RenderTransform>

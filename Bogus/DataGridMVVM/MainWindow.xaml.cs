@@ -28,7 +28,7 @@ namespace DataGridMVVM
     {
         ObservableCollection<User> users = new ObservableCollection<User>();
         int currentPage = 1;
-        int countItemPage = 100;
+        int countItemPage = 200;
         public MainWindow()
         {
             InitializeComponent();
